@@ -79,6 +79,19 @@ public class EnemyController : MonoBehaviour
 
     private void PlayerJumped()
     {
-        rb.AddForce(Vector3.up * Settings.JumpForce, ForceMode.Impulse);
+        if(detectedPlayer)
+        {
+            if(TryHit(Settings.PercentChanceToJump))
+            {
+                rb.AddForce(Vector3.up * Settings.JumpForce, ForceMode.Impulse);
+            }
+            
+        }
+    }
+
+    public bool TryHit(float chance)
+    {
+        var rand = UnityEngine.Random.Range(0f, 100f);
+        return rand <= chance;
     }
 }
