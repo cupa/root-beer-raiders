@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6de93da40fd4314fa4687dac9369d0f, type: 3}
   m_Name: Chipmunk
   m_EditorClassIdentifier: 
-  Speed: 100
+  Speed: 50
   JumpForce: 0.3
   BulletPrefab: {fileID: 2445296944945310551, guid: 488de63cb8f713f40ab36922e491cf2c,
     type: 3}
@@ -21,3 +21,4 @@ MonoBehaviour:
   DistanceThreshold: 1.7
   DistanceYThreshold: 0.5
   CheckDistanceTime: 0.5
+  FollowDistanceThreshold: 0.7

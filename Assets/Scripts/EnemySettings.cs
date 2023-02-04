@@ -13,4 +13,5 @@ public class EnemySettings : ScriptableObject
     public float DistanceThreshold;
     public float DistanceYThreshold;
     public float CheckDistanceTime;
+    public float FollowDistanceThreshold;
 }

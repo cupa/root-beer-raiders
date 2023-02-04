@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public Transform FirePoint;
 
     public static PlayerController Instance;
+
+    public static event Action PlayerJumpListeners;
 
     void Start()
     {
@@ -61,7 +64,7 @@ public class PlayerController : MonoBehaviour
         var jump = inputActions.Player.Jump.IsPressed();
         if (isGrounded && jump)
         {
-            Debug.Log("Jump");
+            PlayerJumpListeners?.Invoke();
             rb.AddForce(Vector3.up * Settings.JumpForce, ForceMode.Impulse);
         }
     }

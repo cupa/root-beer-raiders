@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
 
     private bool detectedPlayer;
     private bool facingLeft;
+    private Rigidbody rb;
     private float nextFire;
 
     void Start()
@@ -18,6 +19,7 @@ public class EnemyController : MonoBehaviour
         facingLeft = true;
         nextFire = 0.0f;
         FlipFacing();
+        PlayerController.PlayerJumpListeners += () => PlayerJumped();
     }
 
     private void FlipFacing()
@@ -26,6 +28,7 @@ public class EnemyController : MonoBehaviour
         currentScale.x *= -1;
         transform.localScale = currentScale;
         facingLeft = !facingLeft;
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -51,6 +54,13 @@ public class EnemyController : MonoBehaviour
             }
 
             Fire();
+            var allDistance = Vector3.Distance(transform.position, playerPosition);
+            if (allDistance >= Settings.FollowDistanceThreshold)
+            {
+                var pivotPoint = PlayerController.Instance.pivotPoint;
+                var position = new Vector3(pivotPoint.position.x, transform.position.y, pivotPoint.position.z);
+                transform.RotateAround(position, Vector3.up, (facingLeft ? 1 : -1) * Settings.Speed * Time.deltaTime);
+            }
         }
     }
 
@@ -65,5 +75,10 @@ public class EnemyController : MonoBehaviour
             bullet.PivotPoint = pivotPoint;
             bullet.Forward = facingLeft;
         }
+    }
+
+    private void PlayerJumped()
+    {
+        rb.AddForce(Vector3.up * Settings.JumpForce, ForceMode.Impulse);
     }
 }
