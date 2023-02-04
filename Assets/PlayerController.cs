@@ -34,5 +34,7 @@ public class PlayerController : MonoBehaviour
         }
         var position = new Vector3(pivotPoint.position.x, transform.position.y, pivotPoint.position.z);
         transform.RotateAround(position, Vector3.up, (horizontalInput * -1) * speed * Time.deltaTime);
+
+        //var jump = inputActions.Player.Jump.
     }
 }
