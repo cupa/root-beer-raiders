@@ -10,4 +10,5 @@ public class PlayerSettings : ScriptableObject
     public GameObject BulletPrefab;
     public float FireRate;
     public float GroundDistance;
+    public float SideDistance;
 }

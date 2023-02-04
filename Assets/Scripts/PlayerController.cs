@@ -20,8 +20,10 @@ public class PlayerController : MonoBehaviour
     private bool facingLeft;
 
     public Transform FirePoint;
+    public Transform SideCollision;
 
     public static PlayerController Instance;
+    private bool isSided;
 
     public static event Action PlayerJumpListeners;
 
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour
         inputActions.Player.Fire.performed += Fire;
         inputActions.Player.Jump.performed += Jump;
         facingLeft = true;
+        isSided = false;
         Instance = this;
     }
 
@@ -56,10 +59,16 @@ public class PlayerController : MonoBehaviour
     {
         var previouslyGrounded = isGrounded;
         CheckGround();
-
-
+        //CheckSide();
+        if (isSided)
+        {
+            Debug.Log("Sided");
+        }
         var horizontalInput = inputActions.Player.Move.ReadValue<Vector2>().x;
-        RotateAround(horizontalInput);
+        //if(!isSided || IsTurningAround(horizontalInput))
+        //{
+            RotateAround(horizontalInput);
+        //}
 
         FlipDirection(horizontalInput);
     }
@@ -80,13 +89,18 @@ public class PlayerController : MonoBehaviour
 
     private void FlipDirection(float horizontalInput)
     {
-        if (horizontalInput > 0 && facingLeft || horizontalInput < 0 && !facingLeft)
+        if (IsTurningAround(horizontalInput))
         {
             var currentScale = transform.localScale;
             currentScale.x *= -1;
             transform.localScale = currentScale;
             facingLeft = !facingLeft;
         }
+    }
+
+    private bool IsTurningAround(float horizontalInput)
+    {
+        return horizontalInput > 0 && facingLeft || horizontalInput < 0 && !facingLeft;
     }
 
     void Fire(InputAction.CallbackContext ctx)
@@ -104,5 +118,10 @@ public class PlayerController : MonoBehaviour
     private void CheckGround()
     {
         isGrounded = Physics.Raycast(transform.position, -Vector3.up, Settings.GroundDistance, groundMask);
+    }
+
+    private void CheckSide()
+    {
+        isSided = Physics.Raycast(SideCollision.position, facingLeft ? Vector3.left : Vector3.right, Settings.SideDistance, groundMask);
     }
 }
