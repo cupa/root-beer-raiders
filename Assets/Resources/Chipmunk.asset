@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6de93da40fd4314fa4687dac9369d0f, type: 3}
+  m_Name: Chipmunk
+  m_EditorClassIdentifier: 
+  Speed: 100
+  JumpForce: 0.3
+  BulletPrefab: {fileID: 2445296944945310551, guid: 488de63cb8f713f40ab36922e491cf2c,
+    type: 3}
+  FireRate: 1.5
+  GroundDistance: 0.2
+  DistanceThreshold: 1.7
+  DistanceYThreshold: 0.5
+  CheckDistanceTime: 0.5

@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
 
     public Transform FirePoint;
 
+    public static PlayerController Instance;
+
     void Start()
     {
         inputActions = new PlayerInputActions();
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         inputActions.Player.Fire.performed += Fire;
         facingLeft = true;
+        Instance = this;
     }
 
     private void OnDestroy()
@@ -51,8 +54,7 @@ public class PlayerController : MonoBehaviour
 
 
         var horizontalInput = inputActions.Player.Move.ReadValue<Vector2>().x;
-        var position = new Vector3(pivotPoint.position.x, transform.position.y, pivotPoint.position.z);
-        transform.RotateAround(position, Vector3.up, (horizontalInput * -1) * Settings.Speed * Time.deltaTime);
+        RotateAround(horizontalInput);
 
         FlipDirection(horizontalInput);
 
@@ -62,6 +64,12 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Jump");
             rb.AddForce(Vector3.up * Settings.JumpForce, ForceMode.Impulse);
         }
+    }
+
+    private void RotateAround(float horizontalInput)
+    {
+        var position = new Vector3(pivotPoint.position.x, transform.position.y, pivotPoint.position.z);
+        transform.RotateAround(position, Vector3.up, (horizontalInput * -1) * Settings.Speed * Time.deltaTime);
     }
 
     private void FlipDirection(float horizontalInput)
