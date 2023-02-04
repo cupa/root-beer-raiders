@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DropSpeed: 0.5
   Speed: 200
-  DestroyTime: 1.7
+  DestroyTime: 1.5

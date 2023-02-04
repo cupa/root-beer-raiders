@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
         inputActions.Enable();
         rb = GetComponent<Rigidbody>();
         inputActions.Player.Fire.performed += Fire;
+        inputActions.Player.Jump.performed += Jump;
         facingLeft = true;
         Instance = this;
     }
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private void OnDestroy()
     {
         inputActions.Player.Fire.performed -= Fire;
+        inputActions.Player.Jump.performed -= Jump;
     }
 
     private void OnEnable()
@@ -60,9 +62,10 @@ public class PlayerController : MonoBehaviour
         RotateAround(horizontalInput);
 
         FlipDirection(horizontalInput);
-
-        var jump = inputActions.Player.Jump.IsPressed();
-        if (isGrounded && jump)
+    }
+    private void Jump(InputAction.CallbackContext obj)
+    {
+        if (isGrounded)
         {
             PlayerJumpListeners?.Invoke();
             rb.AddForce(Vector3.up * Settings.JumpForce, ForceMode.Impulse);
