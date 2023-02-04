@@ -195,6 +195,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e3622f3eb339df2428f546da0b2cdc10,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f9e042e6aef70e449073960d15cef60, type: 2}
     - target: {fileID: 919132149155446097, guid: e3622f3eb339df2428f546da0b2cdc10,
         type: 3}
       propertyPath: m_Name
@@ -497,6 +502,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 555ab1e1fd930c241b753e893005d68c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5f1b9f62cfbb0284ebae5e25ca5c2e58, type: 2}
     - target: {fileID: 919132149155446097, guid: 555ab1e1fd930c241b753e893005d68c,
         type: 3}
       propertyPath: m_Name
@@ -700,12 +710,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b26845722ccb58349870372dfb006841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
-  jumpForce: 0.3
-  bulletPrefab: {fileID: 2445296944945310551, guid: bbfb2ad62d97fe64c9a99b9566cb51c3,
-    type: 3}
-  fireRate: 0.5
-  groundDistance: 0.2
   Settings: {fileID: 11400000, guid: 8e18514f568ef7f44851dcd849a4edee, type: 2}
   pivotPoint: {fileID: 1376159843}
   groundMask:
