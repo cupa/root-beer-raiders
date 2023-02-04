@@ -735,7 +735,7 @@ MonoBehaviour:
   pivotPoint: {fileID: 1376159843}
   jumpForce: 0.3
   groundCheck: {fileID: 705200302}
-  groundDistance: 0.3
+  groundDistance: 0.2
   groundMask:
     serializedVersion: 2
     m_Bits: 8
