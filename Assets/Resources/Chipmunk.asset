@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chipmunk
   m_EditorClassIdentifier: 
   Speed: 50
-  JumpForce: 0.3
+  JumpForce: 0.25
   BulletPrefab: {fileID: 2445296944945310551, guid: 488de63cb8f713f40ab36922e491cf2c,
     type: 3}
   FireRate: 1.5
@@ -22,3 +22,5 @@ MonoBehaviour:
   DistanceYThreshold: 0.5
   CheckDistanceTime: 0.5
   FollowDistanceThreshold: 0.7
+  PercentChanceToJump: 50
+  JumpDelay: 0
