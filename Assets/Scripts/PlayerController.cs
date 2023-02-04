@@ -5,17 +5,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 100.0f;
-    public float jumpForce = 10f;
-    public GameObject bulletPrefab;
-    public float fireRate = 0.5f;
+    public PlayerSettings Settings;
 
     public Transform pivotPoint;
 
     private PlayerInputActions inputActions;
     private Rigidbody rb;
 
-    public float groundDistance = 0.4f;
     public LayerMask groundMask;
     bool isGrounded;
 
@@ -56,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
         var horizontalInput = inputActions.Player.Move.ReadValue<Vector2>().x;
         var position = new Vector3(pivotPoint.position.x, transform.position.y, pivotPoint.position.z);
-        transform.RotateAround(position, Vector3.up, (horizontalInput * -1) * speed * Time.deltaTime);
+        transform.RotateAround(position, Vector3.up, (horizontalInput * -1) * Settings.Speed * Time.deltaTime);
 
         FlipDirection(horizontalInput);
 
@@ -64,7 +60,7 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && jump)
         {
             Debug.Log("Jump");
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * Settings.JumpForce, ForceMode.Impulse);
         }
     }
 
@@ -83,8 +79,8 @@ public class PlayerController : MonoBehaviour
     {
         if (Time.time > nextFire)
         {
-            nextFire = Time.time + fireRate;
-            var bulletObject = Instantiate(bulletPrefab, FirePoint.position, FirePoint.rotation);
+            nextFire = Time.time + Settings.FireRate;
+            var bulletObject = Instantiate(Settings.BulletPrefab, FirePoint.position, FirePoint.rotation);
             var bullet = bulletObject.GetComponent<Bullet>();
             bullet.PivotPoint = pivotPoint;
             bullet.Forward = facingLeft;
@@ -93,6 +89,6 @@ public class PlayerController : MonoBehaviour
 
     private void CheckGround()
     {
-        isGrounded = Physics.Raycast(transform.position, -Vector3.up, groundDistance, groundMask);
+        isGrounded = Physics.Raycast(transform.position, -Vector3.up, Settings.GroundDistance, groundMask);
     }
 }

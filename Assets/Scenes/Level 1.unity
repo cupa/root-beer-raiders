@@ -705,8 +705,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2445296944945310551, guid: bbfb2ad62d97fe64c9a99b9566cb51c3,
     type: 3}
   fireRate: 0.5
-  pivotPoint: {fileID: 1376159843}
   groundDistance: 0.2
+  Settings: {fileID: 11400000, guid: 8e18514f568ef7f44851dcd849a4edee, type: 2}
+  pivotPoint: {fileID: 1376159843}
   groundMask:
     serializedVersion: 2
     m_Bits: 8

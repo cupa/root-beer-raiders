@@ -9,9 +9,11 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
 
     public BulletSettings Settings;
+    private TimeTracker timeTracker;
+
     void Start()
     {
-        
+        this.timeTracker = new TimeTracker(Settings.DestroyTime);
     }
 
     // Update is called once per frame
@@ -23,5 +25,10 @@ public class Bullet : MonoBehaviour
         var currentPosition = transform.position;
         Vector3 newPosition = new Vector3(currentPosition.x, currentPosition.y + (Forward ? -1 : 1) * (Settings.DropSpeed * Time.deltaTime), currentPosition.z);
         transform.position = newPosition;
+
+        if (timeTracker.HasTimePassed())
+        {
+            Destroy(gameObject);
+        }
     }
 }

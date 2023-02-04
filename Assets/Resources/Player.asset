@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1698722bd9792642b8dc7902b6ce608, type: 3}
-  m_Name: MainBullet
+  m_Script: {fileID: 11500000, guid: 169039db8e3ce4d43990da3f5ab123c5, type: 3}
+  m_Name: Player
   m_EditorClassIdentifier: 
-  DropSpeed: 0.5
-  Speed: 200
-  DestroyTime: 1.7
+  Speed: 100
+  JumpForce: 0.3
+  BulletPrefab: {fileID: 2445296944945310551, guid: bbfb2ad62d97fe64c9a99b9566cb51c3,
+    type: 3}
+  FireRate: 0.5
+  GroundDistance: 0.2
