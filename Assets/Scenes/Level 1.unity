@@ -1015,6 +1015,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DummyTree (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 648742263548132197, guid: d73b0e465f464b740b9370d958610d8f,
+        type: 3}
+      propertyPath: PivotPoint
+      value: 
+      objectReference: {fileID: 1376159843}
     - target: {fileID: 1047776151454261912, guid: d73b0e465f464b740b9370d958610d8f,
         type: 3}
       propertyPath: m_RootOrder
@@ -2342,6 +2347,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DummyTree (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 648742263548132197, guid: d73b0e465f464b740b9370d958610d8f,
+        type: 3}
+      propertyPath: PivotPoint
+      value: 
+      objectReference: {fileID: 1376159843}
     - target: {fileID: 1047776151454261912, guid: d73b0e465f464b740b9370d958610d8f,
         type: 3}
       propertyPath: m_RootOrder
@@ -3459,6 +3469,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DummyTree (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 648742263548132197, guid: d73b0e465f464b740b9370d958610d8f,
+        type: 3}
+      propertyPath: PivotPoint
+      value: 
+      objectReference: {fileID: 1376159843}
     - target: {fileID: 1047776151454261912, guid: d73b0e465f464b740b9370d958610d8f,
         type: 3}
       propertyPath: m_RootOrder
@@ -4842,6 +4857,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DummyTree (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 648742263548132197, guid: d73b0e465f464b740b9370d958610d8f,
+        type: 3}
+      propertyPath: PivotPoint
+      value: 
+      objectReference: {fileID: 1376159843}
     - target: {fileID: 1047776151454261912, guid: d73b0e465f464b740b9370d958610d8f,
         type: 3}
       propertyPath: m_RootOrder
@@ -7898,6 +7918,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DummyTree (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 648742263548132197, guid: d73b0e465f464b740b9370d958610d8f,
+        type: 3}
+      propertyPath: PivotPoint
+      value: 
+      objectReference: {fileID: 1376159843}
     - target: {fileID: 1047776151454261912, guid: d73b0e465f464b740b9370d958610d8f,
         type: 3}
       propertyPath: m_RootOrder

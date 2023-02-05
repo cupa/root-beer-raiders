@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        inputActions.Enable();
+        inputActions?.Enable();
     }
 
     private void OnDisable()

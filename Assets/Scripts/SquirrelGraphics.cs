@@ -20,7 +20,7 @@ public class SquirrelGraphics : MonoBehaviour
 
     public void Idle()
     {
-        animator.SetInteger("State", (int)AnimationState.Idle);
+        animator?.SetInteger("State", (int)AnimationState.Idle);
     }
 
     public void Run()
