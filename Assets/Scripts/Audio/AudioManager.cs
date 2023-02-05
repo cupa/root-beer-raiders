@@ -8,6 +8,7 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
     public Sound[] Sounds;
+    public Sound FootstepSound;
     public static AudioManager Instance;
     void Awake()
     {
@@ -17,17 +18,31 @@ public class AudioManager : MonoBehaviour
         }
         foreach (var s in Sounds)
         {
-            s.Source = gameObject.AddComponent<AudioSource>();
-            s.Source.clip = s.Clip;
-            s.Source.volume = s.Volume;
-            s.Source.pitch = s.Pitch;
-            s.Source.loop = s.Loop;
-            s.Source.playOnAwake = s.PlayOnAwake;
+            CreateSound(s);
             if (s.PlayOnAwake)
             {
                 s.Source.Play();
             }
         }
+    }
+    public void CreateSound(Sound sound)
+    {
+        sound.Source = gameObject.AddComponent<AudioSource>();
+        sound.Source.clip = sound.Clips[0];
+        sound.Source.volume = sound.Volume;
+        sound.Source.pitch = sound.Pitch;
+        sound.Source.loop = sound.Loop;
+        sound.Source.playOnAwake = sound.PlayOnAwake;
+    }
+
+    public void PlayOneShot(Sound sound)
+    {
+        SetSourceProperties(sound);
+        sound.Source = gameObject.AddComponent<AudioSource>();
+        sound.Source.volume = sound.FinalVolume;
+        sound.Source.pitch = sound.FinalPitch;
+        sound.Source.clip = sound.SelectedClip;
+        
     }
 
     public void Play(string Name)
@@ -70,17 +85,41 @@ public class AudioManager : MonoBehaviour
         var sound = GetSound(Name);
         StartCoroutine(AudioFade.FadeOut(sound, FadeOutTime, Mathf.SmoothStep, Callback));
     }
+
+    private void SetSourceProperties(Sound sound)
+    {   
+        if (sound != null)
+        {
+            sound.FinalVolume = UnityEngine.Random.Range(sound.Volume + sound.RandomizeVolume, sound.Volume - sound.RandomizeVolume);
+            sound.FinalPitch = UnityEngine.Random.Range(sound.Pitch + sound.RandomizePitch, sound.Pitch - sound.RandomizePitch);
+            sound.SelectedClip = sound.Clips[UnityEngine.Random.Range(0, sound.Clips.Length)];
+        }
+
+
+    }
+
 }
 
 [System.Serializable]
 public class Sound
 {
     public string Name;
-    public AudioClip Clip;
+    public AudioClip[] Clips;
+    [HideInInspector]
+    public AudioClip SelectedClip;
     [Range(0f, 1f)]
-    public float Volume;
+    public float Volume = 1;
+    [Range(0f, 1f)]
+    public float RandomizeVolume = 1;
+    [HideInInspector]
+    public float FinalVolume;
     [Range(.1f, 3f)]
-    public float Pitch;
+    public float Pitch = 1;
+    [Range(0, 3f)]
+    public float RandomizePitch;
+    [HideInInspector]
+    public float FinalPitch;
+    [HideInInspector]
     public bool Loop;
     public bool PlayOnAwake = false;
     [HideInInspector]
