@@ -28,11 +28,15 @@ public class Bullet : MonoBehaviour
 
         if (timeTracker.HasTimePassed())
         {
-            Instantiate(Settings.ExplosionEffect, transform.position, transform.rotation);
-            Destroy(gameObject);
+            DestroyBullet();
         }
     }
     private void OnCollisionEnter(Collision collision)
+    {
+        DestroyBullet();
+    }
+
+    public void DestroyBullet()
     {
         Instantiate(Settings.ExplosionEffect, transform.position, transform.rotation);
         Destroy(gameObject);
