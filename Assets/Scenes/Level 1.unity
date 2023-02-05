@@ -304,10 +304,10 @@ RectTransform:
   m_Father: {fileID: 918327111}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.0063694273, y: 0.015377361}
+  m_AnchorMin: {x: 0.015000001, y: 0.015377361}
   m_AnchorMax: {x: 0.43419963, y: 0.113339625}
-  m_AnchoredPosition: {x: -122.5, y: -35}
-  m_SizeDelta: {x: -303, y: 48}
+  m_AnchoredPosition: {x: -126.5, y: -35}
+  m_SizeDelta: {x: -295, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &64117383
 MonoBehaviour:
@@ -396,7 +396,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -29.777035, y: -9.474575, z: -276.81296, w: 57.626915}
+  m_margin: {x: -22.979015, y: -9.474575, z: -276.81296, w: 57.626915}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2824,9 +2824,9 @@ RectTransform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.507431, y: 0.020792454}
-  m_AnchorMax: {x: 0.98800004, y: 0.089}
-  m_AnchoredPosition: {x: -248.584, y: 243.5}
-  m_SizeDelta: {x: 519.17, y: 479}
+  m_AnchorMax: {x: 0.9817538, y: 0.089}
+  m_AnchoredPosition: {x: -245.584, y: 243.5}
+  m_SizeDelta: {x: 525.17, y: 479}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &783495098
 MonoBehaviour:
@@ -2912,7 +2912,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 506.82437, y: 480.50824, z: 12.230988, w: -3.4787903}
+  m_margin: {x: 506.82437, y: 480.50824, z: 16.76297, w: -3.4787903}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5021,10 +5021,10 @@ RectTransform:
   m_Father: {fileID: 924827538}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.010615711, y: 0.015113849}
+  m_AnchorMin: {x: 0.019000001, y: 0.015113849}
   m_AnchorMax: {x: 0.5361233, y: 0.21511385}
-  m_AnchoredPosition: {x: -120.29999, y: -27}
-  m_SizeDelta: {x: -295, y: -56}
+  m_AnchoredPosition: {x: -124.29999, y: -27}
+  m_SizeDelta: {x: -287, y: -56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1294006950
 MonoBehaviour:
@@ -5119,7 +5119,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -27.677002, y: -55.678406, z: -265.5983, w: -3.4787903}
+  m_margin: {x: -19.745972, y: -55.678406, z: -265.5983, w: -3.4787903}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -7861,11 +7861,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sounds:
   - Name: Theme
-    Clip: {fileID: 8300000, guid: 3aadc4d8e26682042a1bd78d742c561d, type: 3}
+    Clips: []
+    SelectedClip: {fileID: 0}
     Volume: 0.4
+    RandomizeVolume: 0
+    FinalVolume: 0
     Pitch: 1
+    RandomizePitch: 0
+    FinalPitch: 0
     Loop: 1
     PlayOnAwake: 1
+    Source: {fileID: 0}
+  FootstepSound:
+    Name: 
+    Clips: []
+    SelectedClip: {fileID: 0}
+    Volume: 1
+    RandomizeVolume: 0
+    FinalVolume: 0
+    Pitch: 1
+    RandomizePitch: 0
+    FinalPitch: 0
+    Loop: 0
+    PlayOnAwake: 0
     Source: {fileID: 0}
 --- !u!1001 &2094732569
 PrefabInstance:
