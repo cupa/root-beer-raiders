@@ -39,6 +39,9 @@ public class PlayerController : MonoBehaviour
     public GameObject Pistol;
     public GameObject Rootbeer;
 
+    public GameObject YouDied;
+    public GameObject PlayAgain;
+
     internal void EndGame()
     {
         GameOver = true;
@@ -91,6 +94,10 @@ public class PlayerController : MonoBehaviour
     private void OnDeath()
     {
         Debug.Log("Player Dead");
+        graphics.Die();
+        GameOver = true;
+        YouDied.SetActive(true);
+        PlayAgain.SetActive(true);
     }
 
     private void OnDestroy()
