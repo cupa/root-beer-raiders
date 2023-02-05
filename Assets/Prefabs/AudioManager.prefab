@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4875101583423422683
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4875101583423422680}
+  - component: {fileID: 4875101583423422681}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4875101583423422680
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4875101583423422683}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.00020683042, y: 10.786831, z: -1.1778423}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4875101583423422681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4875101583423422683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10696324c7a32ce4d82a399d8c4418f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sounds:
+  - Name: Theme
+    Clips:
+    - {fileID: 8300000, guid: 3aadc4d8e26682042a1bd78d742c561d, type: 3}
+    SelectedClip: {fileID: 0}
+    Volume: 0.728
+    RandomizeVolume: 0
+    FinalVolume: 0
+    Pitch: 1
+    RandomizePitch: 0
+    FinalPitch: 0
+    Loop: 1
+    PlayOnAwake: 1
+    Source: {fileID: 0}
+  FootstepSound:
+    Name: Footstep
+    Clips:
+    - {fileID: 8300000, guid: 253bcd3ce9c5b2547bbb76884cb8edd3, type: 3}
+    - {fileID: 8300000, guid: 8d21869d56e3d844c93e343453552e1a, type: 3}
+    - {fileID: 8300000, guid: 4b8060346b7336d4796acd47019a74c8, type: 3}
+    - {fileID: 8300000, guid: 38780a05081eab540b31878efaeed40c, type: 3}
+    - {fileID: 8300000, guid: 66ca38e524f337e4396fff8f6b60544d, type: 3}
+    - {fileID: 8300000, guid: 99587af01353b6e428f3780b57f37f31, type: 3}
+    - {fileID: 8300000, guid: ba053863fbbd573439433e45ca74facd, type: 3}
+    - {fileID: 8300000, guid: 02fc05c76ef16cb4886220fed8ed4260, type: 3}
+    - {fileID: 8300000, guid: b96b64156c8dd214aaf992eb9b3440fd, type: 3}
+    - {fileID: 8300000, guid: ed44e46cf0b42ae4a8d8e6a1fd9aab7f, type: 3}
+    - {fileID: 8300000, guid: 5bc2a47b9b04a8c4ab4999ccec3629bb, type: 3}
+    SelectedClip: {fileID: 0}
+    Volume: 1
+    RandomizeVolume: 0.292
+    FinalVolume: 0
+    Pitch: 1
+    RandomizePitch: 0
+    FinalPitch: 0
+    Loop: 0
+    PlayOnAwake: 0
+    Source: {fileID: 0}

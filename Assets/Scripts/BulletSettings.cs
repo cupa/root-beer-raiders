@@ -9,4 +9,6 @@ public class BulletSettings : ScriptableObject
     public float Speed;
     public float DestroyTime;
     public GameObject ExplosionEffect;
+    public Sound ShootSound;
+    public Sound ExplosionSound;
 }
