@@ -11,6 +11,17 @@ public class PlayerController : MonoBehaviour
     public Transform pivotPoint;
 
     private PlayerInputActions inputActions;
+
+    internal void EnableRootBeer(RootBeer rootBeer)
+    {
+        this.rootBeer = rootBeer;
+    }
+
+    internal void DisableRootBeer()
+    {
+        rootBeer = null;
+    }
+
     private Rigidbody rb;
 
     public LayerMask groundMask;
@@ -28,6 +39,9 @@ public class PlayerController : MonoBehaviour
     public static event Action PlayerJumpListeners;
 
     private HealthController healthController;
+    private RootBeer rootBeer;
+    private bool hasRootbeer;
+
     void Start()
     {
         inputActions = new PlayerInputActions();
@@ -38,6 +52,7 @@ public class PlayerController : MonoBehaviour
         facingLeft = true;
         isSided = false;
         Instance = this;
+        hasRootbeer = false;
 
         healthController = GetComponent<HealthController>();
         healthController.CurrentHealth = Settings.MaxHealth;
@@ -123,13 +138,20 @@ public class PlayerController : MonoBehaviour
 
     void Fire(InputAction.CallbackContext ctx)
     {
-        if (Time.time > nextFire)
+        if(rootBeer == null)
         {
-            nextFire = Time.time + Settings.FireRate;
-            var bulletObject = Instantiate(Settings.BulletPrefab, FirePoint.position, FirePoint.rotation);
-            var bullet = bulletObject.GetComponent<Bullet>();
-            bullet.PivotPoint = pivotPoint;
-            bullet.Forward = facingLeft;
+            if (Time.time > nextFire)
+            {
+                nextFire = Time.time + Settings.FireRate;
+                var bulletObject = Instantiate(Settings.BulletPrefab, FirePoint.position, FirePoint.rotation);
+                var bullet = bulletObject.GetComponent<Bullet>();
+                bullet.PivotPoint = pivotPoint;
+                bullet.Forward = facingLeft;
+            }
+        } else
+        {
+            rootBeer.TakeRootBeer();
+            hasRootbeer = true;
         }
     }
 

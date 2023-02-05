@@ -8,4 +8,5 @@ public class BulletSettings : ScriptableObject
     public float DropSpeed;
     public float Speed;
     public float DestroyTime;
+    public GameObject ExplosionEffect;
 }
