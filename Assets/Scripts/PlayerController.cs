@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         healthController.OnHit += OnHit;
         healthController.OnDeath += OnDeath;
         graphics = GetComponentInChildren<SquirrelGraphics>();
-        graphics.Run();
+        graphics.Idle();
     }
 
     private void OnHit(int CurrentHealth, int MaxHealth)
@@ -101,6 +101,13 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Sided");
         }
         var horizontalInput = inputActions.Player.Move.ReadValue<Vector2>().x;
+        if(horizontalInput != 0)
+        {
+            graphics.Run();
+        } else
+        {
+            graphics.Idle();
+        }
         //if(!isSided || IsTurningAround(horizontalInput))
         //{
             RotateAround(horizontalInput);
