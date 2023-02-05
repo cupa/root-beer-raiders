@@ -17,3 +17,38 @@ MonoBehaviour:
   DestroyTime: 1.5
   ExplosionEffect: {fileID: 1892078723244562, guid: 46876a2780737ec45a19d62f88e5ce56,
     type: 3}
+  ShootSound:
+    Name: 
+    Clips:
+    - {fileID: 8300000, guid: 791bd9597bcf5ac4a98a1bd5cca18398, type: 3}
+    - {fileID: 8300000, guid: 6c979f34e81d52e4baa4bac037622466, type: 3}
+    - {fileID: 8300000, guid: 71fa90143cbc73440829880e621d5142, type: 3}
+    - {fileID: 8300000, guid: 7a6a061147e6c4d43b62a1c6a766392e, type: 3}
+    SelectedClip: {fileID: 8300000, guid: 6c979f34e81d52e4baa4bac037622466, type: 3}
+    Volume: 0.526
+    RandomizeVolume: 0.298
+    FinalVolume: 0.44717366
+    Pitch: 1.19
+    RandomizePitch: 0.29
+    FinalPitch: 0.99197435
+    Loop: 0
+    PlayOnAwake: 0
+    Source: {fileID: 0}
+  ExplosionSound:
+    Name: 
+    Clips:
+    - {fileID: 8300000, guid: a17841764d94f6d4c9ebbcf60ae0b3eb, type: 3}
+    - {fileID: 8300000, guid: d659bdc446cf90c48bdd1e4fd298447d, type: 3}
+    - {fileID: 8300000, guid: e8598aa17f8113a44b733a35bf7f3064, type: 3}
+    - {fileID: 8300000, guid: 26f25089d6ddc8a4885efe6df6019cb1, type: 3}
+    - {fileID: 8300000, guid: f2c97a8f91b344e4881012ae50021e2f, type: 3}
+    SelectedClip: {fileID: 8300000, guid: 26f25089d6ddc8a4885efe6df6019cb1, type: 3}
+    Volume: 0.292
+    RandomizeVolume: 0.324
+    FinalVolume: 0.14907214
+    Pitch: 1.33
+    RandomizePitch: 0.43
+    FinalPitch: 1.5811951
+    Loop: 0
+    PlayOnAwake: 0
+    Source: {fileID: 0}

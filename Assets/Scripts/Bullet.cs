@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         this.timeTracker = new TimeTracker(Settings.DestroyTime);
+        AudioManager.Instance.PlayOneShot(Settings.ShootSound);
     }
 
     // Update is called once per frame
@@ -39,6 +40,7 @@ public class Bullet : MonoBehaviour
     public void DestroyBullet()
     {
         Instantiate(Settings.ExplosionEffect, transform.position, transform.rotation);
+        AudioManager.Instance.PlayOneShot(Settings.ExplosionSound);
         Destroy(gameObject);
     }
 }
