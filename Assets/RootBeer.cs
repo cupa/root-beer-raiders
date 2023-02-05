@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class RootBeer : MonoBehaviour
 {
+    public GameObject Credits;
+    public GameObject PlayAgain;
+
     public void OnTriggerEnter(Collider other)
     {
         var player = other.GetComponent<PlayerController>();
@@ -27,5 +30,8 @@ public class RootBeer : MonoBehaviour
     {
         Debug.Log("Root Beer Taken");
         Destroy(gameObject);
+        PlayerController.Instance.EndGame();
+        Credits.SetActive(true);
+        PlayAgain.SetActive(true);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -34,6 +35,17 @@ public class PlayerController : MonoBehaviour
     public Transform SideCollision;
 
     public static PlayerController Instance;
+
+    public GameObject Pistol;
+    public GameObject Rootbeer;
+
+    internal void EndGame()
+    {
+        GameOver = true;
+        Pistol.SetActive(false);
+        Rootbeer.SetActive(true);
+    }
+
     private bool isSided;
 
     public static event Action PlayerJumpListeners;
@@ -42,6 +54,7 @@ public class PlayerController : MonoBehaviour
     private RootBeer rootBeer;
     private bool hasRootbeer;
     private SquirrelGraphics graphics;
+    public bool GameOver;
 
     void Start()
     {
@@ -50,10 +63,12 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         inputActions.Player.Fire.performed += Fire;
         inputActions.Player.Jump.performed += Jump;
+        inputActions.Player.Start.performed += RestartGame;
         facingLeft = true;
         isSided = false;
         Instance = this;
         hasRootbeer = false;
+        GameOver = false;
 
         healthController = GetComponent<HealthController>();
         healthController.CurrentHealth = Settings.MaxHealth;
@@ -62,6 +77,11 @@ public class PlayerController : MonoBehaviour
         healthController.OnDeath += OnDeath;
         graphics = GetComponentInChildren<SquirrelGraphics>();
         graphics.Idle();
+    }
+
+    private void RestartGame(InputAction.CallbackContext obj)
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void OnHit(int CurrentHealth, int MaxHealth)
@@ -77,6 +97,7 @@ public class PlayerController : MonoBehaviour
     {
         inputActions.Player.Fire.performed -= Fire;
         inputActions.Player.Jump.performed -= Jump;
+        inputActions.Player.Start.performed -= RestartGame;
         healthController.OnHit -= OnHit;
         healthController.OnDeath -= OnDeath;
     }
@@ -93,27 +114,31 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        var previouslyGrounded = isGrounded;
-        CheckGround();
-        //CheckSide();
-        if (isSided)
+        if (!GameOver)
         {
-            Debug.Log("Sided");
-        }
-        var horizontalInput = inputActions.Player.Move.ReadValue<Vector2>().x;
-        if(horizontalInput != 0)
-        {
-            graphics.Run();
-        } else
-        {
-            graphics.Idle();
-        }
-        //if(!isSided || IsTurningAround(horizontalInput))
-        //{
+            var previouslyGrounded = isGrounded;
+            CheckGround();
+            //CheckSide();
+            if (isSided)
+            {
+                Debug.Log("Sided");
+            }
+            var horizontalInput = inputActions.Player.Move.ReadValue<Vector2>().x;
+            if (horizontalInput != 0)
+            {
+                graphics.Run();
+            }
+            else
+            {
+                graphics.Idle();
+            }
+            //if(!isSided || IsTurningAround(horizontalInput))
+            //{
             RotateAround(horizontalInput);
-        //}
+            //}
 
-        FlipDirection(horizontalInput);
+            FlipDirection(horizontalInput);
+        }
     }
     private void Jump(InputAction.CallbackContext obj)
     {
@@ -148,20 +173,24 @@ public class PlayerController : MonoBehaviour
 
     void Fire(InputAction.CallbackContext ctx)
     {
-        if(rootBeer == null)
+        if(!GameOver)
         {
-            if (Time.time > nextFire)
+            if (rootBeer == null)
             {
-                nextFire = Time.time + Settings.FireRate;
-                var bulletObject = Instantiate(Settings.BulletPrefab, FirePoint.position, FirePoint.rotation);
-                var bullet = bulletObject.GetComponent<Bullet>();
-                bullet.PivotPoint = pivotPoint;
-                bullet.Forward = facingLeft;
+                if (Time.time > nextFire)
+                {
+                    nextFire = Time.time + Settings.FireRate;
+                    var bulletObject = Instantiate(Settings.BulletPrefab, FirePoint.position, FirePoint.rotation);
+                    var bullet = bulletObject.GetComponent<Bullet>();
+                    bullet.PivotPoint = pivotPoint;
+                    bullet.Forward = facingLeft;
+                }
             }
-        } else
-        {
-            rootBeer.TakeRootBeer();
-            hasRootbeer = true;
+            else
+            {
+                rootBeer.TakeRootBeer();
+                hasRootbeer = true;
+            }
         }
     }
 
