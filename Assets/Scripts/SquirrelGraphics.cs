@@ -26,4 +26,9 @@ public class SquirrelGraphics : MonoBehaviour
     {
         animator.SetInteger("State", (int)AnimationState.Run);
     }
+
+    public void Fire()
+    {
+        animator.Play("Fire");
+    }
 }

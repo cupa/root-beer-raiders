@@ -13,6 +13,7 @@ public class EnemyController : MonoBehaviour
     private Rigidbody rb;
     private float nextFire;
     private HealthController healthController;
+    private SquirrelGraphics graphics;
 
     void Start()
     {
@@ -27,6 +28,8 @@ public class EnemyController : MonoBehaviour
         healthController.MaxHealth = Settings.MaxHealth;
         healthController.OnHit += OnHit;
         healthController.OnDeath += OnDeath;
+        graphics = GetComponentInChildren<SquirrelGraphics>();
+        graphics.Idle();
     }
 
     private void OnDestroy()
@@ -80,9 +83,13 @@ public class EnemyController : MonoBehaviour
             var allDistance = Vector3.Distance(transform.position, playerPosition);
             if (allDistance >= Settings.FollowDistanceThreshold)
             {
+                graphics.Run();
                 var pivotPoint = PlayerController.Instance.pivotPoint;
                 var position = new Vector3(pivotPoint.position.x, transform.position.y, pivotPoint.position.z);
                 transform.RotateAround(position, Vector3.up, (facingLeft ? 1 : -1) * Settings.Speed * Time.deltaTime);
+            } else
+            {
+                graphics.Idle();
             }
         }
     }
@@ -92,6 +99,7 @@ public class EnemyController : MonoBehaviour
         var pivotPoint = PlayerController.Instance.pivotPoint;
         if (Time.time > nextFire)
         {
+            graphics.Fire();
             nextFire = Time.time + Settings.FireRate;
             var bulletObject = Instantiate(Settings.BulletPrefab, FirePoint.position, FirePoint.rotation);
             var bullet = bulletObject.GetComponent<Bullet>();
