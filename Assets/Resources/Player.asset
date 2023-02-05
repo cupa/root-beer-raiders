@@ -19,3 +19,4 @@ MonoBehaviour:
   FireRate: 0.5
   GroundDistance: 0.2
   SideDistance: 0.05
+  MaxHealth: 10

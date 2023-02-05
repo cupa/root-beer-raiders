@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 211604914}
   - component: {fileID: 211604913}
   - component: {fileID: 211604912}
+  - component: {fileID: 211604918}
   m_Layer: 8
   m_Name: Chipmunk
   m_TagString: Untagged
@@ -254,6 +255,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &211604918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211604911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bcebe767c64b3c4a9c4c130f3262515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 0
+  CurrentHealth: 0
 --- !u!1001 &256327903
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -890,6 +905,7 @@ GameObject:
   - component: {fileID: 1049334383}
   - component: {fileID: 1049334389}
   - component: {fileID: 1049334390}
+  - component: {fileID: 1049334391}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -1015,6 +1031,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 1
+--- !u!114 &1049334391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049334381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bcebe767c64b3c4a9c4c130f3262515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 0
+  CurrentHealth: 0
 --- !u!4 &1376159843 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e3622f3eb339df2428f546da0b2cdc10,

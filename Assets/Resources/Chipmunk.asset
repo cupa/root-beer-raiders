@@ -24,3 +24,4 @@ MonoBehaviour:
   FollowDistanceThreshold: 0.7
   PercentChanceToJump: 50
   JumpDelay: 0
+  MaxHealth: 3

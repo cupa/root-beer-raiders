@@ -17,4 +17,6 @@ public class EnemySettings : ScriptableObject
 
     public float PercentChanceToJump;
     public float JumpDelay;
+
+    public int MaxHealth;
 }

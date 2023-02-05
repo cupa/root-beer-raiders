@@ -11,4 +11,5 @@ public class PlayerSettings : ScriptableObject
     public float FireRate;
     public float GroundDistance;
     public float SideDistance;
+    public int MaxHealth;
 }

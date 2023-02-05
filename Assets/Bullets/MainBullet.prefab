@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6129970699153112673}
   - component: {fileID: 19278909259837274}
   - component: {fileID: 8694538068078710413}
+  - component: {fileID: -8372940863381958191}
+  - component: {fileID: -2709052599054350386}
   m_Layer: 7
   m_Name: MainBullet
   m_TagString: Untagged
@@ -111,5 +113,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3d657be00347243b8831a0b4c1681d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pivotPoint: {fileID: 0}
+  PivotPoint: {fileID: 0}
+  Forward: 0
   Settings: {fileID: 11400000, guid: 12f94c6a24b29b740be55aab89f43bc5, type: 2}
+--- !u!114 &-8372940863381958191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2445296944945310551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55586ff112ea34145a226267bb7f30d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &-2709052599054350386
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2445296944945310551}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 1

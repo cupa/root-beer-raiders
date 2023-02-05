@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     public static event Action PlayerJumpListeners;
 
+    private HealthController healthController;
     void Start()
     {
         inputActions = new PlayerInputActions();
@@ -37,12 +38,29 @@ public class PlayerController : MonoBehaviour
         facingLeft = true;
         isSided = false;
         Instance = this;
+
+        healthController = GetComponent<HealthController>();
+        healthController.CurrentHealth = Settings.MaxHealth;
+        healthController.MaxHealth = Settings.MaxHealth;
+        healthController.OnHit += OnHit;
+        healthController.OnDeath += OnDeath;
+    }
+
+    private void OnHit(int CurrentHealth, int MaxHealth)
+    {
+        Debug.Log(string.Format("Player hit: {0}/{1}", CurrentHealth, MaxHealth));
+    }
+    private void OnDeath()
+    {
+        Debug.Log("Player Dead");
     }
 
     private void OnDestroy()
     {
         inputActions.Player.Fire.performed -= Fire;
         inputActions.Player.Jump.performed -= Jump;
+        healthController.OnHit -= OnHit;
+        healthController.OnDeath -= OnDeath;
     }
 
     private void OnEnable()
