@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
     private float nextFire;
     private HealthController healthController;
     private SquirrelGraphics graphics;
+    private bool dead;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class EnemyController : MonoBehaviour
         facingLeft = true;
         nextFire = 0.0f;
         FlipFacing();
+        dead = false;
         PlayerController.PlayerJumpListeners += () => PlayerJumped();
 
         healthController = GetComponent<HealthController>();
@@ -45,7 +47,11 @@ public class EnemyController : MonoBehaviour
     }
     private void OnDeath()
     {
-        Debug.Log("Enemy Dead");
+        graphics.Die();
+        dead = true;
+        rb.detectCollisions = false;
+        rb.isKinematic = true;
+        GetComponent<CapsuleCollider>().enabled = false;
     }
 
     private void FlipFacing()
@@ -60,36 +66,40 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var playerPosition = PlayerController.Instance.transform.position;
-        var currentY = new Vector3(0, transform.position.y, 0);
-        var playerY = new Vector3(0, playerPosition.y, 0);
-        if (timeTracker.HasTimePassed())
+        if(!dead)
         {
-            var yDistance = Vector3.Distance(currentY, playerY);
-            var allDistance = Vector3.Distance(transform.position, playerPosition);
-            detectedPlayer = yDistance <= Settings.DistanceYThreshold && allDistance <= Settings.DistanceThreshold;
-            timeTracker.RestartTimer(Settings.CheckDistanceTime);
-        }
-
-        Vector3 direction = (playerPosition - transform.position).normalized;
-        if(detectedPlayer)
-        {
-            if (direction.x > 0 && facingLeft || direction.x < 0 && !facingLeft)
+            var playerPosition = PlayerController.Instance.transform.position;
+            var currentY = new Vector3(0, transform.position.y, 0);
+            var playerY = new Vector3(0, playerPosition.y, 0);
+            if (timeTracker.HasTimePassed())
             {
-                FlipFacing();
+                var yDistance = Vector3.Distance(currentY, playerY);
+                var allDistance = Vector3.Distance(transform.position, playerPosition);
+                detectedPlayer = yDistance <= Settings.DistanceYThreshold && allDistance <= Settings.DistanceThreshold;
+                timeTracker.RestartTimer(Settings.CheckDistanceTime);
             }
 
-            Fire();
-            var allDistance = Vector3.Distance(transform.position, playerPosition);
-            if (allDistance >= Settings.FollowDistanceThreshold)
+            Vector3 direction = (playerPosition - transform.position).normalized;
+            if (detectedPlayer)
             {
-                graphics.Run();
-                var pivotPoint = PlayerController.Instance.pivotPoint;
-                var position = new Vector3(pivotPoint.position.x, transform.position.y, pivotPoint.position.z);
-                transform.RotateAround(position, Vector3.up, (facingLeft ? 1 : -1) * Settings.Speed * Time.deltaTime);
-            } else
-            {
-                graphics.Idle();
+                if (direction.x > 0 && facingLeft || direction.x < 0 && !facingLeft)
+                {
+                    FlipFacing();
+                }
+
+                Fire();
+                var allDistance = Vector3.Distance(transform.position, playerPosition);
+                if (allDistance >= Settings.FollowDistanceThreshold)
+                {
+                    graphics.Run();
+                    var pivotPoint = PlayerController.Instance.pivotPoint;
+                    var position = new Vector3(pivotPoint.position.x, transform.position.y, pivotPoint.position.z);
+                    transform.RotateAround(position, Vector3.up, (facingLeft ? 1 : -1) * Settings.Speed * Time.deltaTime);
+                }
+                else
+                {
+                    graphics.Idle();
+                }
             }
         }
     }

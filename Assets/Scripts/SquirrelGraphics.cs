@@ -8,7 +8,8 @@ public class SquirrelGraphics : MonoBehaviour
 
     private enum AnimationState { 
         Idle = 0,
-        Run = 1
+        Run = 1,
+        Die = 2
     }
 
     // Start is called before the first frame update
@@ -25,6 +26,10 @@ public class SquirrelGraphics : MonoBehaviour
     public void Run()
     {
         animator.SetInteger("State", (int)AnimationState.Run);
+    }
+    public void Die()
+    {
+        animator.SetInteger("State", (int)AnimationState.Die);
     }
 
     public void Fire()
