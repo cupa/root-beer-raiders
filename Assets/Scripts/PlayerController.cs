@@ -11,6 +11,17 @@ public class PlayerController : MonoBehaviour
     public Transform pivotPoint;
 
     private PlayerInputActions inputActions;
+
+    internal void EnableRootBeer(RootBeer rootBeer)
+    {
+        this.rootBeer = rootBeer;
+    }
+
+    internal void DisableRootBeer()
+    {
+        rootBeer = null;
+    }
+
     private Rigidbody rb;
 
     public LayerMask groundMask;
@@ -20,10 +31,16 @@ public class PlayerController : MonoBehaviour
     private bool facingLeft;
 
     public Transform FirePoint;
+    public Transform SideCollision;
 
     public static PlayerController Instance;
+    private bool isSided;
 
     public static event Action PlayerJumpListeners;
+
+    private HealthController healthController;
+    private RootBeer rootBeer;
+    private bool hasRootbeer;
 
     void Start()
     {
@@ -31,13 +48,34 @@ public class PlayerController : MonoBehaviour
         inputActions.Enable();
         rb = GetComponent<Rigidbody>();
         inputActions.Player.Fire.performed += Fire;
+        inputActions.Player.Jump.performed += Jump;
         facingLeft = true;
+        isSided = false;
         Instance = this;
+        hasRootbeer = false;
+
+        healthController = GetComponent<HealthController>();
+        healthController.CurrentHealth = Settings.MaxHealth;
+        healthController.MaxHealth = Settings.MaxHealth;
+        healthController.OnHit += OnHit;
+        healthController.OnDeath += OnDeath;
+    }
+
+    private void OnHit(int CurrentHealth, int MaxHealth)
+    {
+        Debug.Log(string.Format("Player hit: {0}/{1}", CurrentHealth, MaxHealth));
+    }
+    private void OnDeath()
+    {
+        Debug.Log("Player Dead");
     }
 
     private void OnDestroy()
     {
         inputActions.Player.Fire.performed -= Fire;
+        inputActions.Player.Jump.performed -= Jump;
+        healthController.OnHit -= OnHit;
+        healthController.OnDeath -= OnDeath;
     }
 
     private void OnEnable()
@@ -54,15 +92,22 @@ public class PlayerController : MonoBehaviour
     {
         var previouslyGrounded = isGrounded;
         CheckGround();
-
-
+        //CheckSide();
+        if (isSided)
+        {
+            Debug.Log("Sided");
+        }
         var horizontalInput = inputActions.Player.Move.ReadValue<Vector2>().x;
-        RotateAround(horizontalInput);
+        //if(!isSided || IsTurningAround(horizontalInput))
+        //{
+            RotateAround(horizontalInput);
+        //}
 
         FlipDirection(horizontalInput);
-
-        var jump = inputActions.Player.Jump.IsPressed();
-        if (isGrounded && jump)
+    }
+    private void Jump(InputAction.CallbackContext obj)
+    {
+        if (isGrounded)
         {
             PlayerJumpListeners?.Invoke();
             rb.AddForce(Vector3.up * Settings.JumpForce, ForceMode.Impulse);
@@ -77,7 +122,7 @@ public class PlayerController : MonoBehaviour
 
     private void FlipDirection(float horizontalInput)
     {
-        if (horizontalInput > 0 && facingLeft || horizontalInput < 0 && !facingLeft)
+        if (IsTurningAround(horizontalInput))
         {
             var currentScale = transform.localScale;
             currentScale.x *= -1;
@@ -86,20 +131,37 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private bool IsTurningAround(float horizontalInput)
+    {
+        return horizontalInput > 0 && facingLeft || horizontalInput < 0 && !facingLeft;
+    }
+
     void Fire(InputAction.CallbackContext ctx)
     {
-        if (Time.time > nextFire)
+        if(rootBeer == null)
         {
-            nextFire = Time.time + Settings.FireRate;
-            var bulletObject = Instantiate(Settings.BulletPrefab, FirePoint.position, FirePoint.rotation);
-            var bullet = bulletObject.GetComponent<Bullet>();
-            bullet.PivotPoint = pivotPoint;
-            bullet.Forward = facingLeft;
+            if (Time.time > nextFire)
+            {
+                nextFire = Time.time + Settings.FireRate;
+                var bulletObject = Instantiate(Settings.BulletPrefab, FirePoint.position, FirePoint.rotation);
+                var bullet = bulletObject.GetComponent<Bullet>();
+                bullet.PivotPoint = pivotPoint;
+                bullet.Forward = facingLeft;
+            }
+        } else
+        {
+            rootBeer.TakeRootBeer();
+            hasRootbeer = true;
         }
     }
 
     private void CheckGround()
     {
         isGrounded = Physics.Raycast(transform.position, -Vector3.up, Settings.GroundDistance, groundMask);
+    }
+
+    private void CheckSide()
+    {
+        isSided = Physics.Raycast(SideCollision.position, facingLeft ? Vector3.left : Vector3.right, Settings.SideDistance, groundMask);
     }
 }

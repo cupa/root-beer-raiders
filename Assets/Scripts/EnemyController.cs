@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     private bool facingLeft;
     private Rigidbody rb;
     private float nextFire;
+    private HealthController healthController;
 
     void Start()
     {
@@ -20,6 +21,28 @@ public class EnemyController : MonoBehaviour
         nextFire = 0.0f;
         FlipFacing();
         PlayerController.PlayerJumpListeners += () => PlayerJumped();
+
+        healthController = GetComponent<HealthController>();
+        healthController.CurrentHealth = Settings.MaxHealth;
+        healthController.MaxHealth = Settings.MaxHealth;
+        healthController.OnHit += OnHit;
+        healthController.OnDeath += OnDeath;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerController.PlayerJumpListeners -= () => PlayerJumped();
+        healthController.OnHit -= OnHit;
+        healthController.OnDeath -= OnDeath;
+    }
+
+    private void OnHit(int CurrentHealth, int MaxHealth)
+    {
+        Debug.Log(string.Format("Enemy hit: {0}/{1}", CurrentHealth, MaxHealth));
+    }
+    private void OnDeath()
+    {
+        Debug.Log("Enemy Dead");
     }
 
     private void FlipFacing()

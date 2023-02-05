@@ -15,3 +15,5 @@ MonoBehaviour:
   DropSpeed: 0.2
   Speed: 60
   DestroyTime: 0.8
+  ExplosionEffect: {fileID: 1892078723244562, guid: 46876a2780737ec45a19d62f88e5ce56,
+    type: 3}

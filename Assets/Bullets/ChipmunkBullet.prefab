@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 6129970699153112673}
   - component: {fileID: 19278909259837274}
   - component: {fileID: 8694538068078710413}
-  m_Layer: 7
+  - component: {fileID: -4261263884556889374}
+  - component: {fileID: -798300751956709216}
+  m_Layer: 9
   m_Name: ChipmunkBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,3 +116,31 @@ MonoBehaviour:
   PivotPoint: {fileID: 0}
   Forward: 0
   Settings: {fileID: 11400000, guid: f9f44c4d9e3b42f4d8a625118f1c4d99, type: 2}
+--- !u!114 &-4261263884556889374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2445296944945310551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55586ff112ea34145a226267bb7f30d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &-798300751956709216
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2445296944945310551}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 1

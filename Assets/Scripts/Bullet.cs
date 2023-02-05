@@ -28,7 +28,13 @@ public class Bullet : MonoBehaviour
 
         if (timeTracker.HasTimePassed())
         {
+            Instantiate(Settings.ExplosionEffect, transform.position, transform.rotation);
             Destroy(gameObject);
         }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        Instantiate(Settings.ExplosionEffect, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }

@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   Speed: 100
-  JumpForce: 0.3
+  JumpForce: 3.5
   BulletPrefab: {fileID: 2445296944945310551, guid: bbfb2ad62d97fe64c9a99b9566cb51c3,
     type: 3}
   FireRate: 0.5
   GroundDistance: 0.2
+  SideDistance: 0.05
+  MaxHealth: 10
