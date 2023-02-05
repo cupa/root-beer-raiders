@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     private SquirrelGraphics graphics;
     private bool dead;
 
+
     void Start()
     {
         this.timeTracker = new TimeTracker(Settings.CheckDistanceTime);
@@ -66,7 +67,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!dead)
+        if(!dead && !PlayerController.Instance.GameOver)
         {
             var playerPosition = PlayerController.Instance.transform.position;
             var currentY = new Vector3(0, transform.position.y, 0);
