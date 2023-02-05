@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     private HealthController healthController;
     private RootBeer rootBeer;
     private bool hasRootbeer;
+    private SquirrelGraphics graphics;
 
     void Start()
     {
@@ -59,6 +60,8 @@ public class PlayerController : MonoBehaviour
         healthController.MaxHealth = Settings.MaxHealth;
         healthController.OnHit += OnHit;
         healthController.OnDeath += OnDeath;
+        graphics = GetComponentInChildren<SquirrelGraphics>();
+        graphics.Run();
     }
 
     private void OnHit(int CurrentHealth, int MaxHealth)
