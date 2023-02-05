@@ -791,6 +791,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 0
   CurrentHealth: 0
+  HealthBar: {fileID: 8803053330953531500, guid: a3d85149753aac94690e9ff4d4c82207,
+    type: 3}
+  Canvas: {fileID: 970716654}
 --- !u!1001 &256327903
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3027,6 +3030,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 0
   CurrentHealth: 0
+  HealthBar: {fileID: 8803053330953531500, guid: a3d85149753aac94690e9ff4d4c82207,
+    type: 3}
+  Canvas: {fileID: 970716654}
 --- !u!4 &1146791728 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: 508476d3fc8465b439a56076acd2ba45,
@@ -3347,7 +3353,7 @@ GameObject:
   - component: {fileID: 1297299800}
   - component: {fileID: 1297299801}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: AudioListener
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
