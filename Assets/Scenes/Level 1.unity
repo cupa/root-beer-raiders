@@ -7861,9 +7861,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sounds:
   - Name: Theme
-    Clips: []
+    Clips:
+    - {fileID: 8300000, guid: 3aadc4d8e26682042a1bd78d742c561d, type: 3}
     SelectedClip: {fileID: 0}
-    Volume: 0.4
+    Volume: 0.7
     RandomizeVolume: 0
     FinalVolume: 0
     Pitch: 1
