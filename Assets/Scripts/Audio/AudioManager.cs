@@ -37,11 +37,16 @@ public class AudioManager : MonoBehaviour
 
     public void PlayOneShot(Sound sound)
     {
-        SetSourceProperties(sound);
-        sound.Source = gameObject.AddComponent<AudioSource>();
-        sound.Source.volume = sound.FinalVolume;
-        sound.Source.pitch = sound.FinalPitch;
-        sound.Source.clip = sound.SelectedClip;
+        if(sound != null)
+        {
+            SetSourceProperties(sound);
+            sound.Source = gameObject.AddComponent<AudioSource>();
+            sound.Source.volume = sound.FinalVolume;
+            sound.Source.pitch = sound.FinalPitch;
+            sound.Source.clip = sound.SelectedClip;
+            sound.Source.Play();
+        }
+        
         
     }
 
@@ -110,7 +115,7 @@ public class Sound
     [Range(0f, 1f)]
     public float Volume = 1;
     [Range(0f, 1f)]
-    public float RandomizeVolume = 1;
+    public float RandomizeVolume = 0;
     [HideInInspector]
     public float FinalVolume;
     [Range(.1f, 3f)]
