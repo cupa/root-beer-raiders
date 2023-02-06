@@ -4853,7 +4853,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "The \"Nefarious Nibblers\" gang has taken my Rootbeer! \nNo one steals
+  m_text: "The \"Nefarious Nibblers\" gang has taken my Root Beer! \nNo one steals
     from me, Don D. Nutz! \nGotta take them out and get it back!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3d13711ce3e8d7a4ba119b31146f61f6, type: 2}
@@ -6298,7 +6298,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Nobody takes root from Don. D Nutz!
+  m_text: Nobody takes Root from Don. D Nutz!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3d13711ce3e8d7a4ba119b31146f61f6, type: 2}
   m_sharedMaterial: {fileID: -5943817408000906843, guid: 3d13711ce3e8d7a4ba119b31146f61f6,
