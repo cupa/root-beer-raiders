@@ -149,7 +149,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Jump(InputAction.CallbackContext obj)
     {
-        if (isGrounded)
+        if (isGrounded && !GameOver)
         {
             PlayerJumpListeners?.Invoke();
             rb.AddForce(Vector3.up * Settings.JumpForce, ForceMode.Impulse);

@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour
         nextFire = 0.0f;
         FlipFacing();
         dead = false;
-        PlayerController.PlayerJumpListeners += () => PlayerJumped();
+        PlayerController.PlayerJumpListeners += PlayerJumped;
 
         healthController = GetComponent<HealthController>();
         healthController.CurrentHealth = Settings.MaxHealth;
@@ -37,7 +37,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnDestroy()
     {
-        PlayerController.PlayerJumpListeners -= () => PlayerJumped();
+        PlayerController.PlayerJumpListeners -= PlayerJumped;
         healthController.OnHit -= OnHit;
         healthController.OnDeath -= OnDeath;
     }
