@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.034879517, g: 0.23089027, b: 0.3904299, a: 1}
+  m_IndirectSpecularColor: {r: 0.034283135, g: 0.2324, b: 0.39031348, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4673,7 +4673,7 @@ MonoBehaviour:
     Graphics - Jess Graziani
 
     Music -
-    Lucas C.
+    Lucas Ciarlante
 
     Sound - Alex Cole
 
