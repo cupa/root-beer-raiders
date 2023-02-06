@@ -9,7 +9,7 @@ public class TextController : MonoBehaviour
     {
         if(other.GetComponent<PlayerController>() != null)
         {
-            Text.SetActive(true);
+            Text?.SetActive(true);
         }
     }
 
@@ -17,12 +17,12 @@ public class TextController : MonoBehaviour
     {
         if (other.GetComponent<PlayerController>() != null)
         {
-            Text.SetActive(false);
+            Text?.SetActive(false);
         }
     }
 
     private void OnDestroy()
     {
-        Text.SetActive(false);
+        Text?.SetActive(false);
     }
 }
