@@ -15,10 +15,12 @@ public class EnemyController : MonoBehaviour
     private HealthController healthController;
     private SquirrelGraphics graphics;
     private bool dead;
+    private Camera camera1;
 
 
     void Start()
     {
+        camera1 = Camera.main;
         this.timeTracker = new TimeTracker(Settings.CheckDistanceTime);
         facingLeft = true;
         nextFire = 0.0f;
@@ -33,6 +35,7 @@ public class EnemyController : MonoBehaviour
         healthController.OnDeath += OnDeath;
         graphics = GetComponentInChildren<SquirrelGraphics>();
         graphics.Idle();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void OnDestroy()
@@ -61,7 +64,6 @@ public class EnemyController : MonoBehaviour
         currentScale.x *= -1;
         transform.localScale = currentScale;
         facingLeft = !facingLeft;
-        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -70,20 +72,23 @@ public class EnemyController : MonoBehaviour
         if(!dead && !PlayerController.Instance.GameOver)
         {
             var playerPosition = PlayerController.Instance.transform.position;
-            var currentY = new Vector3(0, transform.position.y, 0);
-            var playerY = new Vector3(0, playerPosition.y, 0);
             if (timeTracker.HasTimePassed())
             {
+                var position = transform.position;
+                var currentY = new Vector3(0, position.y, 0);
+                var playerY = new Vector3(0, playerPosition.y, 0);
                 var yDistance = Vector3.Distance(currentY, playerY);
-                var allDistance = Vector3.Distance(transform.position, playerPosition);
+                var allDistance = Vector3.Distance(position, playerPosition);
                 detectedPlayer = yDistance <= Settings.DistanceYThreshold && allDistance <= Settings.DistanceThreshold;
                 timeTracker.RestartTimer(Settings.CheckDistanceTime);
             }
 
-            Vector3 direction = (playerPosition - transform.position).normalized;
             if (detectedPlayer)
             {
-                if (direction.x > 0 && facingLeft || direction.x < 0 && !facingLeft)
+                var playerScreenPosition = camera1.WorldToScreenPoint(playerPosition);
+                var enemyPosition = camera1.WorldToScreenPoint(transform.position);
+                var playerIsRight = playerScreenPosition.x > enemyPosition.x;
+                if (playerIsRight && facingLeft || !playerIsRight && !facingLeft)
                 {
                     FlipFacing();
                 }
@@ -94,11 +99,13 @@ public class EnemyController : MonoBehaviour
                 {
                     graphics.Run();
                     var pivotPoint = PlayerController.Instance.pivotPoint;
-                    var position = new Vector3(pivotPoint.position.x, transform.position.y, pivotPoint.position.z);
+                    var pivotPos = pivotPoint.position;
+                    var position = new Vector3(pivotPos.x, transform.position.y, pivotPos.z);
                     transform.RotateAround(position, Vector3.up, (facingLeft ? 1 : -1) * Settings.Speed * Time.deltaTime);
                 }
                 else
                 {
+                    detectedPlayer = false;
                     graphics.Idle();
                 }
             }

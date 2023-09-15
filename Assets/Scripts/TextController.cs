@@ -21,8 +21,8 @@ public class TextController : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        Text?.SetActive(false);
-    }
+    // private void OnDestroy()
+    // {
+    //     Text?.SetActive(false);
+    // }
 }

@@ -16,6 +16,12 @@ public class HealthController : MonoBehaviour
 
     private GameObject HealthBarInstance;
     private Coroutine currentCoroutine;
+    private Camera camera1;
+
+    private void Start()
+    {
+        camera1 = Camera.main;
+    }
 
     public void OnCollisionEnter(Collision collision)
     {
@@ -44,8 +50,9 @@ public class HealthController : MonoBehaviour
     {
         if(HealthBarInstance != null)
         {
-            var position = new Vector3(transform.position.x, transform.position.y + .4f, transform.position.z);
-            var screenPosition = Camera.main.WorldToScreenPoint(position);
+            var pos = transform.position;
+            var position = new Vector3(pos.x, pos.y + .4f, pos.z);
+            var screenPosition = camera1.WorldToScreenPoint(position);
             HealthBarInstance.transform.position = screenPosition;
         }
     }
@@ -56,10 +63,12 @@ public class HealthController : MonoBehaviour
         {
             Destroy(HealthBarInstance);
         }
-        var position = new Vector3(transform.position.x, transform.position.y + .4f, transform.position.z);
-        var screenPosition = Camera.main.WorldToScreenPoint(position);
-        HealthBarInstance = Instantiate(HealthBar, screenPosition, transform.rotation);
-        HealthBarInstance.transform.parent = Canvas.transform;
+
+        var pos = transform.position;
+        var position = new Vector3(pos.x, pos.y + .4f, pos.z);
+        var screenPosition = camera1.WorldToScreenPoint(position);
+        HealthBarInstance = Instantiate(HealthBar, screenPosition, Quaternion.identity);
+        HealthBarInstance.transform.SetParent(Canvas.transform);
         var slider = HealthBarInstance.GetComponent<Slider>();
         var newWidth = (float)currentHealth / (float)maxHealth;
         slider.value = newWidth;

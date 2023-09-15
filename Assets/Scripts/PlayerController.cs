@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
     private bool hasRootbeer;
     private SquirrelGraphics graphics;
     public bool GameOver;
+    private Vector3 pivatePos;
 
     void Start()
     {
@@ -80,6 +81,7 @@ public class PlayerController : MonoBehaviour
         healthController.OnDeath += OnDeath;
         graphics = GetComponentInChildren<SquirrelGraphics>();
         graphics.Idle();
+        pivatePos = pivotPoint.position;
     }
 
     private void RestartGame(InputAction.CallbackContext obj)
@@ -121,6 +123,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        //transform.Translate(Vector3.left * Time.deltaTime);
         if (!GameOver)
         {
             var previouslyGrounded = isGrounded;
@@ -130,6 +133,7 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log("Sided");
             }
+
             var horizontalInput = inputActions.Player.Move.ReadValue<Vector2>().x;
             if (horizontalInput != 0)
             {
@@ -158,7 +162,7 @@ public class PlayerController : MonoBehaviour
 
     private void RotateAround(float horizontalInput)
     {
-        var position = new Vector3(pivotPoint.position.x, transform.position.y, pivotPoint.position.z);
+        var position = new Vector3(pivatePos.x, transform.position.y, pivatePos.z);
         transform.RotateAround(position, Vector3.up, (horizontalInput * -1) * Settings.Speed * Time.deltaTime);
     }
 

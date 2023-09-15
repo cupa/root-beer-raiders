@@ -7,6 +7,7 @@ public class RootBeer : MonoBehaviour
 {
     public GameObject Credits;
     public GameObject PlayAgain;
+    public GameObject TakeText;
 
     public void OnTriggerEnter(Collider other)
     {
@@ -33,5 +34,6 @@ public class RootBeer : MonoBehaviour
         PlayerController.Instance.EndGame();
         Credits.SetActive(true);
         PlayAgain.SetActive(true);
+        TakeText.SetActive(false);
     }
 }
